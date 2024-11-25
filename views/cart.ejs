@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href= "/public/assets/styles.css" rel="stylesheet" type="text/css"/>
+    <title>Your Cart</title>
+
+</head>
+<body>
+    <h1>Shopping Cart</h1>
+    <ul>
+        <% items.forEach((item) => {%>
+            <li>
+                <a href="/products/<%= item.productID%>"><%= item.name%></a>
+                <img src = <%= item.image %>>
+                <p>Price: <%= item.price %></p>
+                <p>Amount: <%= item.amount %></p>
+                <form action ="/products/cart/<%= item._id%>?_method=DELETE" method="POST">
+                    <button type="submit">Remove Item</button>
+                </form>
+                </li>
+        <%}); %>
+    </ul>
+    <a href="/products">Continue Shopping</a>   
+
+     <form action ="/products/search/">
+     <input type="search" placeholder="Search groceries" id="myQuery" name="query">
+     <button>Search</button>
+    </form>
+</body>
+</html>

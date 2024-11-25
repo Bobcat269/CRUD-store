@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href= "/public/assets/styles.css" rel="stylesheet" type="text/css"/>
+    <title>Products</title>
+    <!-- <style>
+     img {
+    height: 200px;
+    width: 200px;
+}
+   
+    </style> -->
+</head>
+<body>
+    <h1>Products</h1>
+    <!-- <ul> -->
+        <% products.forEach((item) => {%>
+            <!-- <li> -->
+                <a href="/products/<%= item._id%>"><%= item.name%></a>
+                <img src = <%= item.image %>>
+                <!-- </li> -->
+        <%}); %>
+    <!-- </ul> -->
+     <br>
+    <a href="/products/new">Add New Item</a>  
+    <br>
+    <a href="/cart">View Your Cart</a>  
+
+     <form action ="/products/search/">
+     <input type="search" placeholder="Search groceries" id="myQuery" name="query">
+     <button>Search</button>
+    </form>
+</body>
+</html>
