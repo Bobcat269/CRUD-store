@@ -11,3 +11,15 @@ img {
  display: none;
  color: green;
 }
+
+.tracker{
+    display: flex;
+    flex-direction: row;
+    height: 50px;
+    border: 1px solid green;
+}
+
+h2{
+
+    border: 1px solid red;
+}

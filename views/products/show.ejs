@@ -7,33 +7,37 @@
     <title><%= item.name %></title>
 </head>
 <body>
+    <%- include('../partials/_navbar.ejs') //nav bar%>
     <h1><%= item.name %></h1>
-    <p>Price: <%=item.price%></p>
     <img src = <%= item.image %>>
-    <p>Available: <%=item.amount%></p>
+    <p>Price: <%=item.price%></p>
 
+    <!-- <p>cartObject: <%= //cartObject %></p> -->
+    <!-- <p>cartObject_ID: <%= //cartObject._id %></p> -->
+    <!-- <p>item: <%= //item %></p> -->
+    <!-- <p>user: <%= //currentUser %></p> -->
 
-    <% if (cartObject.length > 0) { %>
+    <% if (cartObject) { %>
         
-        <div>
-        <form action ="/products/cart/<%=cartObject[0]._id%>?_method=PUT" method="POST">
-            <input class="hide" type = "number" name="amount" id="amount"value="<%=cartObject[0].amount+1%>"/>
+        <div class = "tracker">
+        <form action ="/users/<%= currentUser._id %>/cart/<%=cartObject._id%>?_method=PUT" method="POST">
+            <input class="hide" type = "number" name="amount" id="amount"value="<%=cartObject.amount+1%>"/>
             <button type = "submit">+</button>
         </form>
-        <p>In Cart: <%=cartObject[0].amount%></p>
-        <% if (cartObject[0].amount === 1) { %>
-            <form action ="/products/cart/<%=cartObject[0]._id%>?_method=DELETE" method="POST">
+        <h2><%=cartObject.amount%></h2>
+        <% if (cartObject.amount === 1) { %>
+            <form action ="/users/<%= currentUser._id %>/cart/<%=cartObject._id%>?_method=DELETE" method="POST">
                 <button type = "submit">-</button>
             </form>
             <% } else { %>
-        <form action ="/products/cart/<%=cartObject[0]._id%>?_method=PUT" method="POST">
-            <input class="hide" type = "number" name="amount" id="amount"value="<%=cartObject[0].amount-1%>"/>
+                <form action ="/users/<%= currentUser._id %>/cart/<%=cartObject._id%>?_method=PUT" method="POST">
+            <input class="hide" type = "number" name="amount" id="amount"value="<%=cartObject.amount-1%>"/>
             <button type = "submit">-</button>
         </form>
         <% } %>
     </div>
    <%} else {%>
-    <form action ="/products/cart" method="POST">
+    <form action ="/users/<%= currentUser._id %>/cart" method="POST">
         <input class="hide" type ="text" name="name" id="name" value="<%= item.name %>"/>
         <input class="hide" type ="text" name="productID" id="productID" value="<%= item._id %>"/>
         <input class="hide" type ="text" name="category" id="category"value="<%= item.category %>"/>
@@ -43,9 +47,9 @@
         <button type = "submit">Add to Cart</button>
     </form>
     <%} %>
-    <a href="/products">Back to Products</a>  
+    <a href="/products">Browse Store</a>  
     <br>
-    <a href="/cart">View Your Cart</a>  
+    <a href="/users/<%= currentUser._id %>/cart">View Your Cart</a>  
 </body>
 
 

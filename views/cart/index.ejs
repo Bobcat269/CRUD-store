@@ -8,38 +8,42 @@
 
 </head>
 <body>
+    <%- include('../partials/_navbar.ejs') //nav bar%>
     <h1>Shopping Cart</h1>
+    <% if (cartItems.length < 1) { %>
+        <p>Your cart is currently empty.</p>
+        <% } %>
     <ul>
-        <% items.forEach((item) => {%>
+        <% cartItems.forEach((item) => {%>
             <li>
                 <a href="/products/<%= item.productID%>"><%= item.name%></a>
                 <img src = <%= item.image %>>
                 <p>Price: $<%= item.price %></p>
                 <div class = "tracker">
-                    <form action ="/products/cart/<%=item._id%>?_method=PUT" method="POST">
+                    <form action ="/users/<%= currentUser._id %>/cart/<%=item._id%>?_method=PUT" method="POST">
                         <input class="hide" type = "number" name="amount" id="amount"value="<%=item.amount+1%>"/>
                         <button type = "submit">+</button>
                     </form>
                     <h2><%=item.amount%></h2>
                     <% if (item.amount === 1) { %>
-                        <form action ="/products/cart/<%=item._id%>?_method=DELETE" method="POST">
+                        <form action ="/users/<%= currentUser._id %>/cart/<%=item._id%>?_method=DELETE" method="POST">
                             <button type = "submit">-</button>
                         </form>
                         <% } else { %>
-                    <form action ="/products/cart/<%=item._id%>?_method=PUT" method="POST">
-                        <input class="hide" type = "number" name="amount" id="amount"value="<%=item.amount-1%>"/>
-                        <button type = "submit">-</button>
-                    </form>
+                            <form action ="/users/<%= currentUser._id %>/cart/<%=item._id%>?_method=PUT" method="POST">
+                                <input class="hide" type = "number" name="amount" id="amount"value="<%=item.amount-1%>"/>
+                                <button type = "submit">-</button>
+                            </form>
                     <% } %>
                 </div>
 
-                <form action ="/products/cart/<%= item._id%>?_method=DELETE" method="POST">
+                <form action ="/users/<%= currentUser._id %>/cart/<%=item._id%>?_method=DELETE" method="POST">
                     <button type="submit">Remove Item</button>
                 </form>
                 </li>
         <%}); %>
     </ul>
-    <a href="/products">Continue Shopping</a>   
+    <a href="/products">Browse Store</a>   
 
      <form action ="/products/search/">
      <input type="search" placeholder="Search groceries" id="myQuery" name="query">
