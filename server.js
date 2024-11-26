@@ -58,8 +58,8 @@ app.get('/', (req, res) => {
     }
   });
 
-  //ALL PRODUCTS
-  app.get("/products", async (req,res) =>{
+//ALL PRODUCTS
+app.get("/products", async (req,res) =>{
     const allProducts = await Product.find();
     const currentUser = await User.findById(req.session.user._id);
     res.render('products/index.ejs', {
@@ -68,10 +68,7 @@ app.get('/', (req, res) => {
     })
   }) 
 
-  //RENDER PRODUCT PAGE --Added to server.js
-
-  //WARNING, when we make changes, we have to restart the server to log in
-  //again otherwise the application cant find req.session.user_id
+//SHOW ROUTE
 app.get("/products/:productID", async (req,res) =>{
     //Get item data from products model
     const clickedProduct = await Product.findById(req.params.productID)
@@ -88,7 +85,19 @@ res.render("products/show.ejs", {item: clickedProduct, cartObject: currentUser.c
     
 })
 
+// //GET products POST page
+// app.get("/products/new", (req,res)=>{
+//     res.render('products/new.ejs')
+// })
 
+// //POST products
+// app.post("/products", async (req, res) => {
+//     await Product.create(req.body);
+//     res.redirect(req.get("Referrer") || "/");
+//   });
+
+
+app.use(morgan('tiny'));
 app.use('/auth', authController); //handle auth routes
 app.use(isSignedIn);
 app.use('/users/:userId/cart', cartController); //handle cart routes

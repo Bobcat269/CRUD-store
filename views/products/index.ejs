@@ -4,28 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href= "/public/assets/styles.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
     <title>Products</title>
 
 </head>
 <body>
     <%- include('../partials/_navbar.ejs') //nav bar%>
     <h1>Products</h1>
-    <!-- <ul> -->
+    <div class ="container">
         <% products.forEach((item) => {%>
             <!-- <li> -->
+                <div class = "product">
+                <a href="/products/<%= item._id%>"><img src = <%= item.image %>></a>
                 <a href="/products/<%= item._id%>"><%= item.name%></a>
-                <img src = <%= item.image %>>
-                <!-- </li> -->
+            </div>
+
         <%}); %>
+    </div>
     <!-- </ul> -->
-     <br>
+     <br><br><br>
 
-    <br>
-    <a href="/users/<%= currentUser._id %>/cart">View Your Cart</a> 
 
-     <form action ="/products/search/">
-     <input type="search" placeholder="Search groceries" id="myQuery" name="query">
-     <button>Search</button>
-    </form>
 </body>
 </html>

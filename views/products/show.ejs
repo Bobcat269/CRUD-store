@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href= "/public/assets/styles.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
     <title><%= item.name %></title>
 </head>
 <body>
@@ -47,9 +49,7 @@
         <button type = "submit">Add to Cart</button>
     </form>
     <%} %>
-    <a href="/products">Browse Store</a>  
-    <br>
-    <a href="/users/<%= currentUser._id %>/cart">View Your Cart</a>  
+    <a href="/products">Back to Store</a>
 </body>
 
 

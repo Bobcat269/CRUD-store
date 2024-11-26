@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href= "/public/assets/styles.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Your Cart</title>
 
 </head>
@@ -15,9 +16,9 @@
         <% } %>
     <ul>
         <% cartItems.forEach((item) => {%>
-            <li>
+            <li class = "listProduct">
                 <a href="/products/<%= item.productID%>"><%= item.name%></a>
-                <img src = <%= item.image %>>
+                <a href="/products/<%= item.productID%>"><img src = <%= item.image %>></a>
                 <p>Price: $<%= item.price %></p>
                 <div class = "tracker">
                     <form action ="/users/<%= currentUser._id %>/cart/<%=item._id%>?_method=PUT" method="POST">
@@ -42,12 +43,8 @@
                 </form>
                 </li>
         <%}); %>
-    </ul>
-    <a href="/products">Browse Store</a>   
-
-     <form action ="/products/search/">
-     <input type="search" placeholder="Search groceries" id="myQuery" name="query">
-     <button>Search</button>
+    </ul>     
     </form>
+    <a href="/products">Back to Store</a>
 </body>
 </html>

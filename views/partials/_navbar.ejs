@@ -1,7 +1,14 @@
 <nav>
+
     <% if(user) { %>
-      <a href="/users/<%= user._id %>/cart">Your Cart</a>
+<div id = "leftnav">
+  <img src ='/public/assets/logo.png'>
+      <a href="/products">Browse Store</a>
+    </div>
+    <div id = "rightnav">
+      <a href="/users/<%= user._id %>/cart"><button style="font-size:24px">Cart <i class="fa fa-shopping-cart"></i></button></a>
       <a href="/auth/sign-out">Sign Out</a>
+    </div>
     <% } else { %>
       <a href="/auth/sign-in">Sign In</a>
       <a href="/auth/sign-up">Sign Up</a>

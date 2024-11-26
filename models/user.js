@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const cartSchema = new mongoose.Schema({
   name: String,
   productID: String,
-  category: {String, enum: ['produce', 'dairy', 'meats']},
+  category: String,
   price: Number,
   image: String,
   amount: Number,  
